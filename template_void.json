@@ -1,0 +1,35 @@
+[{
+	"web_url_default_location":"",
+	"id_default_location" : "",
+	"type_default_location":"",
+	"name_default_location":"",
+	"awards": [
+		{
+			"year":"",
+			"name":"",
+		}
+	],
+	"ranking_position_default_location":"",
+	"price_level_default_location":"",
+	"category_default_location":"",
+	"rating_default_location":"",
+	"address_default_location":"",
+	"latitude_default_location":"",
+	"longitude_default_location":"",
+	"number_of_review_default_location":"",
+	"review" : [
+		{
+			"contributor_information" :
+			{
+				"web_url_profil_id_contributor":"",
+				"pseudo_contributor":"",
+				"contribution_nb_contributor"
+			}
+			
+
+
+		}
+
+	],
+
+}]
