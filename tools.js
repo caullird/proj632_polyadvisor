@@ -1,4 +1,3 @@
-// tools.js
 const fetch  = require("node-fetch");
 const fs = require('fs');
 
@@ -15,7 +14,7 @@ let queryProfil = fs.readFileSync("./queryProfil.graphql", 'utf8');
 
 module.exports = {
   validURL: function (str) {
-    let pattern = new RegExp('^(https:\\/\\/)?(www\.tripadvisor\.com)','i'); // fragment locator
+    let pattern = new RegExp('^(https:\\/\\/)?(www\.tripadvisor\.com)','i');
     return !!pattern.test(str);
   },
   getLocationId: function(url) {
@@ -60,14 +59,9 @@ module.exports = {
 
     let locationId = location['data']['locations'][0]['locationId']
 
-    // console.log(profils[0]['data']['socialFeed'])
-
     for (profil of profils) {
       let path = `results/${locationId}/${currentDate}/profils/${profil['data']['socialFeed']['sections'][0]['actor']['userId']}.json`
-
       this.writeFile(path, profil)
-
-      console.log(profil)
     }
 
     return profils

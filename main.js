@@ -1,8 +1,6 @@
 'use strict';
 
 const minimist = require('minimist');
-const fetch  = require("node-fetch");
-const fs = require('fs');
 const { exit } = require('process');
 const tools = require('./tools.js')
 
