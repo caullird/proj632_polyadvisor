@@ -1,9 +1,7 @@
 {
   "dependencies": {
-<<<<<<< HEAD
     "minimist": "^1.2.5",
-=======
->>>>>>> dfecb13ec6346d2a61a4dcb141420849d5badbc9
+    "multilang-sentiment": "^1.2.0",
     "node-fetch": "^2.6.1",
     "zlib": "^1.0.5"
   }

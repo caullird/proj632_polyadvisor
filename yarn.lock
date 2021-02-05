@@ -2,14 +2,23 @@
 # yarn lockfile v1
 
 
-<<<<<<< HEAD
+fuse.js@^3.4.4:
+  version "3.6.1"
+  resolved "https://registry.yarnpkg.com/fuse.js/-/fuse.js-3.6.1.tgz#7de85fdd6e1b3377c23ce010892656385fd9b10c"
+  integrity sha512-hT9yh/tiinkmirKrlv4KWOjztdoZo1mx9Qh4KvWqC7isoXwdUY3PNWUxceF4/qO9R6riA2C29jdTOeQOIROjgw==
+
 minimist@^1.2.5:
   version "1.2.5"
   resolved "https://registry.yarnpkg.com/minimist/-/minimist-1.2.5.tgz#67d66014b66a6a8aaa0c083c5fd58df4e4e97602"
   integrity sha512-FM9nNUYrRBAELZQT3xeZQ7fmMOBg6nWNmJKTcgsJeaLstP/UODVpGsr5OhXhhXg6f+qtJ8uiZ+PUxkDWcgIXLw==
 
-=======
->>>>>>> dfecb13ec6346d2a61a4dcb141420849d5badbc9
+multilang-sentiment@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/multilang-sentiment/-/multilang-sentiment-1.2.0.tgz#9f41a60d18909aa09aab34a6223ce4f0caadcb09"
+  integrity sha512-OOVVfqQJ0EfLPGi0kIy3R7kLXH4awe8C7/ML6z4ggK0Ju4PoirWE69eSTMQ7PzQbsL381Z0bq/Xeg73919FpRA==
+  dependencies:
+    fuse.js "^3.4.4"
+
 node-fetch@^2.6.1:
   version "2.6.1"
   resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.6.1.tgz#045bd323631f76ed2e2b55573394416b639a0052"
