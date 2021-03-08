@@ -2,15 +2,16 @@
 
 const minimist = require('minimist');
 const { exit } = require('process');
-const tools = require('./tools.js')
 
-let currentDate = new Date().getTime()
+const retrieveData = require('./retrieveData.js')
+const wordsCloud = require('./wordsCloud.js')
+
+const currentDate = new Date().getTime()
 
 let args = minimist(process.argv.slice(2), {
     alias: {
         h: 'help',
-        v: 'version',
-        l: 'limit',
+        v: 'version'
     }
 });
 
@@ -24,15 +25,15 @@ if (args.version) {
     exit();
 }
 
-if (!args.limit) args.limit = 5;
-
-if (typeof args['_'][0] !== 'string' || !tools.validURL(args['_'][0]))
+if (typeof args['_'][0] !== 'string' || !retrieveData.validUrl(args['_'][0]))
     throw 'Command need an URL argument ! Example : node .\\main.js <URL>';
 
 let URL = args['_'][0];
-let locationID = tools.getLocationId(args['_'][0]);
+let locationID = retrieveData.parseUrl(args['_'][0]);
 
 (async () => {
-    let location = await tools.getLocation(locationID, args.limit, currentDate)
-    let profils = await tools.getProfils(location, currentDate)
+    let location = await retrieveData.getLocation(locationID, currentDate)
+    let profils = await retrieveData.getProfils(location, currentDate)
+
+    wordsCloud.getFrom(locationID, location, currentDate)
 })();
