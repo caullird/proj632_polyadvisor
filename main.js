@@ -2,7 +2,8 @@
 
 const minimist = require('minimist');
 const { exit } = require('process');
-const tools = require('./tools.js')
+const tools = require('./tools.js');
+const analyze = require('./analyze.js');
 
 let currentDate = new Date().getTime()
 
@@ -35,4 +36,9 @@ let locationID = tools.getLocationId(args['_'][0]);
 (async () => {
     let location = await tools.getLocation(locationID, args.limit, currentDate)
     let profils = await tools.getProfils(location, currentDate)
+
+
+    let analyzes = analyze.getAnalyzes(locationID, currentDate)
+
+
 })();
