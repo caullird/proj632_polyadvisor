@@ -14,13 +14,13 @@ let queryProfil = fs.readFileSync("./queryProfil.graphql", 'utf8');
 
 module.exports = {
   validURL: function (str) {
-    let pattern = new RegExp('^(https:\\/\\/)?(www\.tripadvisor\.com)','i');
+    let pattern = new RegExp('^(https:\\/\\/)?(www\.tripadvisor\.)','i');
     return !!pattern.test(str);
   },
   getLocationId: function(url) {
-    let pattern = new RegExp('d\\d{6}', 'g');
+    let pattern = new RegExp('-d\\d+-', 'g');
     let locationId = pattern.exec(url)[0]
-    return locationId.substring(1)
+    return locationId.substring(2).slice(0, -1);
   },
   getLocation: async function(locationId, limit, currentDate) {
     let bodyReviews = JSON.stringify({
@@ -49,11 +49,10 @@ module.exports = {
     return json
   },
   getProfils: async function(location, currentDate) {
-
     let profils = await Promise.all(
       location['data']['locations'][0]['reviewList']['reviews'].map(async review => {
         let profilResponse = await this.getFetchProfil(review['userId'])
-        return profilResponse.json()
+        return profilResponse.json();
       })
     )
 
