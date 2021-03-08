@@ -2,6 +2,8 @@
 
 const minimist = require('minimist');
 const { exit } = require('process');
+const tools = require('./tools.js');
+const analyze = require('./analyze.js');
 
 const retrieveData = require('./retrieveData.js')
 const wordsCloud = require('./wordsCloud.js')
@@ -36,4 +38,5 @@ let locationID = retrieveData.parseUrl(args['_'][0]);
     let profils = await retrieveData.getProfils(location, currentDate)
 
     wordsCloud.getFrom(locationID, location, currentDate)
+    let analyzes = analyze.getAnalyzes(locationID, currentDate)
 })();
