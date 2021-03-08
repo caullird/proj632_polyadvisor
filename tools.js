@@ -14,7 +14,7 @@ let queryProfil = fs.readFileSync("./queryProfil.graphql", 'utf8');
 
 module.exports = {
   validURL: function (str) {
-    let pattern = new RegExp('^(https:\\/\\/)?(www\.tripadvisor\.)','i');
+    let pattern = new RegExp('^(https:\\/\\/)?(www\.tripadvisor\.(fr || com))','i');
     return !!pattern.test(str);
   },
   getLocationId: function(url) {
