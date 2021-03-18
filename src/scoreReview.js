@@ -1,8 +1,8 @@
 module.exports = {
-    photo : function(review, location, profils, currentDate) {
-        return 20
+    reviewHasPhotos : function(review, profil, location, currentDate) {
+        return 0
     },
-    b : function(review, location, profils, currentDate) {
-        return 50
+    helpfulVote : function(review, profil, location, currentDate) {
+        return 0
     }
 }

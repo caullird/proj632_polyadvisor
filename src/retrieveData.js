@@ -58,16 +58,19 @@ module.exports = {
       })
     )
 
-    let locationId = location['locationId']
-
-    for (profil of profils) {
-      if(profil['data']['socialFeed']['sections'][0] && profil['data']['socialFeed']['sections'][0]['actor']['userId']){
-          let path = `results/${locationId}/${currentDate}/profils/${profil['data']['socialFeed']['sections'][0]['actor']['userId']}.json`
-          tools.writeFile(path, profil)
+    let profilsWithKey = []
+    profils = profils.map((profil) => {
+      if(profil['data']['socialFeed']['sections'][0] && profil['data']['socialFeed']['sections'][0]['actor']['userId']) {
+        profilsWithKey[profil['data']['socialFeed']['sections'][0]['actor']['userId']] = profil['data']['socialFeed']['sections'][0]
       }
+    })
+
+    for (profilId in profilsWithKey) {
+          let path = `results/${location['locationId']}/${currentDate}/profils/${profilId}}.json`
+          tools.writeFile(path, profilsWithKey[profilId])
     }
 
-    return profils
+    return profilsWithKey
     
   },
   getFetchProfil: async function(idProfil) {
