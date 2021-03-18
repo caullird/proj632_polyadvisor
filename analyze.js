@@ -11,8 +11,6 @@ module.exports = {
 
 function analyzeReviews(location, profils, currentDate){
 
-	console.log(location)
-
 	var reviews = location['reviewList']['reviews']
 
 	reviews.forEach(review => {
