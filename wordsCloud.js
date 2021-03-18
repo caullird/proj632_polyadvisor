@@ -1,5 +1,6 @@
 const { worker } = require('cluster');
 const fs = require('fs');
+const { exit } = require('process');
 const tools = require('./tools.js')
 
 module.exports = {
