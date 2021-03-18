@@ -11,8 +11,8 @@ let headers = {
   'X-TripAdvisor-UUID': '3635d637-5325-4797-bfec-a30662d92450',
   'Accept-Encoding': 'gzip'
 };
-let queryReviews = fs.readFileSync("./queryReviews.graphql", 'utf8');
-let queryProfil = fs.readFileSync("./queryProfil.graphql", 'utf8');
+let queryReviews = fs.readFileSync("./src/queryReviews.graphql", 'utf8');
+let queryProfil = fs.readFileSync("./src/queryProfil.graphql", 'utf8');
 
 module.exports = {
   validUrl: function (str) {

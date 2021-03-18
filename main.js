@@ -2,11 +2,10 @@
 
 const minimist = require('minimist');
 const { exit } = require('process');
-const tools = require('./tools.js');
-const analyze = require('./analyze.js');
+const analyze = require('./src/analyze.js');
 
-const retrieveData = require('./retrieveData.js')
-const wordsCloud = require('./wordsCloud.js')
+const retrieveData = require('./src/retrieveData.js')
+const wordsCloud = require('./src/wordsCloud.js')
 
 const currentDate = new Date().getTime()
 
