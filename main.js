@@ -38,5 +38,5 @@ let locationID = retrieveData.parseUrl(args['_'][0]);
     let profils = await retrieveData.getProfils(location, currentDate)
 
     wordsCloud.getFrom(locationID, location, currentDate)
-    let analyzes = analyze.getAnalyzes(locationID, currentDate)
+    let analyzes = analyze.getAnalyzes(location, profils, currentDate)
 })();

@@ -3,50 +3,33 @@ const fetch  = require("node-fetch")
 const fs = require('fs')
 
 module.exports = {
-  getAnalyzes: function (locationID, currentDate) {
-  	analyzeReviews(locationID,currentDate)
+  getAnalyzes: function (location, profils, currentDate) {
+  	analyzeReviews(location, profils, currentDate)
     
   },
 };
 
-function analyzeReviews(locationID,currentDate){
+function analyzeReviews(location, profils, currentDate){
 
-	// Get location data 
-	let url_data_recovery = "./results/" + locationID + "/" + currentDate
-	
-	let url_location = url_data_recovery + "/data/location.json"
+	console.log(location)
 
-	let location = JSON.parse(fs.readFileSync(url_location))
-
-	data = write_location_data(location,data)
-
-	var reviews = location['data']['locations'][0]['reviewList']['reviews']
+	var reviews = location['reviewList']['reviews']
 
 	reviews.forEach(review => {
 
-		console.log(sentiment_analyze(review['text'])['score'])
+		user_data = get_user_data(review['userId'],profils)
 
-		user_data = get_user_data(review['userId'],url_data_recovery)
-
-		if(typeof user_data === 'undefined'){
-			console.log("Aucun fichier utilisateur existant | ID Utilisateur " + obj['userId'] + " pour l'avis " + obj['id'])
-
-		}
-
-		create_json_file_result(locationID,review,data,currentDate)
 	})	
 }
 
-function get_user_data(user_id,url){
-	let url_user = url + "/profils/" + user_id + '.json'
-
-	try{
-		return JSON.parse(fs.readFileSync(url_user,"utf8"))
-	}catch(error){
-		console.error(error)
-	}
-	
+function get_user_data(user_id,profils){
+	profils.forEach(profil =>{
+		if(profil['data']['socialFeed']['sections'][0]['actor']['userId'] == user_id){
+			return profil
+		}		
+	})
 }
+	
 
 function create_json_file_result(locationID,review,data,current_date){
 
