@@ -2,10 +2,10 @@
 
 const minimist = require('minimist');
 const { exit } = require('process');
-const analyze = require('./src/analyze.js');
 
 const retrieveData = require('./src/retrieveData.js')
-const wordsCloud = require('./src/wordsCloud.js')
+const scoreProfil = require('./src/scoreProfil.js')
+const scoreReview = require('./src/scoreReview.js')
 
 const currentDate = new Date().getTime()
 
@@ -36,6 +36,13 @@ let locationID = retrieveData.parseUrl(args['_'][0]);
     let location = await retrieveData.getLocation(locationID, currentDate)
     let profils = await retrieveData.getProfils(location, currentDate)
 
-    wordsCloud.getFrom(locationID, location, currentDate)
-    let analyzes = analyze.getAnalyzes(location, profils, currentDate)
+    let score = 0;
+    for (const method in scoreProfil) {
+        score += scoreProfil[method](location, profils, currentDate)
+    }
+    for (const method in scoreReview) {
+        score += scoreProfil[method](location, profils, currentDate)
+    }
+    console.log(score)
+
 })();

@@ -51,7 +51,7 @@ fragment HotelReviewFields on LocationInformation {
 fragment HotelReviewSectionFields on LocationInformation {
 	__typename
 	reviewList(
-		page: { limit: -1, offset: 0 }
+		page: { limit: 10, offset: 0 }
 		initialPrefs: { sortType: "connectionsFirst", showMT: true }
 		prefs: { sortType: "connectionsFirst", showMT: true }
 		filters: $reviewFilters
