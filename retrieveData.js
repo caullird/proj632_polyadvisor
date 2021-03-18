@@ -61,8 +61,10 @@ module.exports = {
     let locationId = location['locationId']
 
     for (profil of profils) {
-      let path = `results/${locationId}/${currentDate}/profils/${profil['data']['socialFeed']['sections'][0]['actor']['userId']}.json`
-      tools.writeFile(path, profil)
+      if(profil['data']['socialFeed']['sections'][0]['actor']['userId']){
+          let path = `results/${locationId}/${currentDate}/profils/${profil['data']['socialFeed']['sections'][0]['actor']['userId']}.json`
+          tools.writeFile(path, profil)
+      }
     }
 
     return profils
