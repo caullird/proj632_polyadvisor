@@ -1,3 +1,8 @@
 {
-    "reviewHasPhotos": 20
+    "reviewHasPhotos": 20,
+    "profilHasPersonnalAvatar": 20,
+    "numberReviews": 4,
+    "rateDeviationAverage": -3,
+    "monthReviewsFrequency": -5,
+    "accountCreation": 5
 }
