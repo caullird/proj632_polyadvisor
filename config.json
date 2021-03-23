@@ -4,5 +4,7 @@
     "numberReviews": 4,
     "rateDeviationAverage": -3,
     "monthReviewsFrequency": -5,
-    "accountCreation": 5
+    "accountCreation": 5,
+    "helpfulVotes" : 5,
+    "rateDeviation" : -5
 }

@@ -4,10 +4,10 @@ module.exports = {
     reviewHasPhotos : function(review, profil, location, currentDate) {
         return review.photos.length > 0 ? config['reviewHasPhotos'] : 0
     },
-    helpfulVote : function(review, profil, location, currentDate) {
-        return 0
+    helpfulVotes : function(review, profil, location, currentDate) {
+        return review.helpfulVotes * config['helpfulVotes']
     },
-    rateDeviation: function(review, profil, location, currentDate) {
-        return 0
+    rateDeviation: function(review, profil, location, currentDate) {        
+        return Math.sqrt(Math.pow(location['reviewSummary']['rating']- review.rating,2)) * config['rateDeviation']
     }
 }
