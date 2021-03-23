@@ -1,3 +1,5 @@
 {
-    "reviewHasPhotos": 20
+    "reviewHasPhotos": 20,
+    "helpfulVotes" : 5,
+    "rateDeviation" : -5
 }
