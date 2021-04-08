@@ -42,10 +42,10 @@ let locationID = retrieveData.parseUrl(args['_'][0]);
         let idProfil = review['userId']
         scores[idReview] = 0
         for (const method in scoreProfil) {
-            scores[idReview] += parseInt(scoreProfil[method](review, profils[idProfil], location, currentDate))
+            scores[idReview] += parseInt(await scoreProfil[method](review, profils[idProfil], location, currentDate))
         }
         for (const method in scoreReview) {
-            scores[idReview] += parseInt(scoreReview[method](review, profils[idProfil], location, currentDate))
+            scores[idReview] += parseInt(await scoreReview[method](review, profils[idProfil], location, currentDate))
         }
     }
     console.log(scores)
