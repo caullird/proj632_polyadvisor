@@ -39,43 +39,33 @@ module.exports = {
         profil.forEach((review) => {
             data.push(review.items[0].feedSectionObject.publishedDate)
         })
-        console.log(data)
 
+        let diff = []
         for(let i = 0; i < data.length - 1; i++){
             var date1 = new Date(data[i + 1])
             var date2 = new Date(data[i])
-            var time_diff = date2.getTime() - date1.getTime();
-            var days_Diff = time_diff / (1000 * 3600 * 24);
-
-            console.log(days_Diff)
-
+            diff.push((date2.getTime() - date1.getTime()) / (1000 * 3600 * 24))
         }
-        return 0
+
+        let sum = count = malus = 0
+        diff.forEach((date_diff) => {
+            if(date_diff < 30){
+                sum += date_diff
+                count += 1
+                if(sum > 30)
+                    sum = count = 0
+                if((count >= 10) && (count > malus))
+                    malus = count
+            }else
+                sum = count = 0
+        })
+        return (malus - 10) * config['malus_to_much_comment']
     },
-    monthReviewsFrequency : function(review, profil, location, currentDate) {
-        // @TODO
+    rateDistanceAverage : async function(review, profil, location, currentDate) {
         return 0
     },
     accountCreation : function(review, profil, location, currentDate) {
         // @TODO
         return 0
     },
-}
-
-function deg2rad(x){
-    return Math.PI*x/180;
-}
-
-function get_distance_m($lat1, $lng1, $lat2, $lng2) {
-    $earth_radius = 6378137;
-    $rlo1 = deg2rad($lng1);
-    $rla1 = deg2rad($lat1);
-    $rlo2 = deg2rad($lng2);
-    $rla2 = deg2rad($lat2);
-    $dlo = ($rlo2 - $rlo1) / 2;
-    $dla = ($rla2 - $rla1) / 2;
-    $a = (Math.sin($dla) * Math.sin($dla)) + Math.cos($rla1) * Math.cos($rla2) * (Math.sin($dlo) * Math.sin($dlo
-));
-    $d = 2 * Math.atan2(Math.sqrt($a), Math.sqrt(1 - $a));
-    return ($earth_radius * $d) / 1000;
 }

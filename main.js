@@ -36,7 +36,6 @@ let locationID = retrieveData.parseUrl(args['_'][0]);
 (async () => {
     let location = await retrieveData.getLocation(locationID, currentDate)
     let profils = await retrieveData.getProfils(location, currentDate)
-    
     let scores = {}
     for (let review of location['reviewList']['reviews']) {
         let idReview =  review['id']
