@@ -42,15 +42,15 @@ module.exports = {
 
         if(prof_x && prof_y){
             let dist = Math.round(get_distance_m(prof_x,prof_y,location_x,location_y))
+            console.log(dist)
             var criteria = config['distanceAverage'].criteria
             var values = config['distanceAverage'].response
             for(let crit of criteria){
                 if(dist <= crit){
                     return values[criteria.indexOf(crit)]
-                }else{
-                    return values[values.length - 1]
-                }
+                }                
             }
+            return values[values.length - 1]
         }
         return 0
     },
