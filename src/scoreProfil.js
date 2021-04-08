@@ -9,13 +9,34 @@ module.exports = {
         return profil.actor.followerCount * config['numberFollowers']
     },
     numberFollowers : function(review, profil, location, currentDate) {
-        return profil.items.length * config['numberReviews']
+        return profil.length * config['numberReviews']
+    },
+    numberFollowers : function(review, profil, location, currentDate) {
+        return profil[0].actor.followerCount * config['numberFollowers']
     }, 
     profilIsVerified : function(review, profil, location, currentDate) {
         return profil.actor.isVerified * config['profilIsVerified']
     },
-    rateDistanceAverage : async function(review, profil, location, currentDate) {
+    monthReviewsFrequency : function(review, profil, location, currentDate) {
+        let data = []
+        profil.forEach((review) => {
+            data.push(review.items[0].feedSectionObject.publishedDate)
+        })
+        console.log(data)
 
+
+        for(let i = 0; i < data.length - 1; i++){
+            var date1 = new Date(data[i + 1])
+            var date2 = new Date(data[i])
+            var time_diff = date2.getTime() - date1.getTime();
+            var days_Diff = time_diff / (1000 * 3600 * 24);
+
+            console.log(days_Diff)
+
+        }
+        return 0
+    },
+    rateDistanceAverage : async function(review, profil, location, currentDate) {
         let prof_x = prof_y = location_x = location_y = null
 
         if(profil.actor.hometown.location){
@@ -54,6 +75,7 @@ module.exports = {
         }
         return 0
     },
+
     monthReviewsFrequency : function(review, profil, location, currentDate) {
         return 0
     },
