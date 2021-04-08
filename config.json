@@ -1,10 +1,17 @@
 {
     "reviewHasPhotos": 20,
     "profilHasPersonnalAvatar": 20,
-    "numberReviews": 4,
+    "profilIsVerified" : 50,
+    "numberReviews": 5,
+    "numberFollowers": 4,
     "rateDeviationAverage": -3,
     "monthReviewsFrequency": -5,
     "accountCreation": 5,
     "helpfulVotes" : 5,
-    "rateDeviation" : -5
+    "rateDeviation" : -5,
+    "distanceAverage" : {
+    	"criteria" : [20,50,100,250,500,1000,1500,5000,10000],
+    	"response" : [30,25,20,15,5,0,-5,-20,-30]
+    } 
+    
 }
