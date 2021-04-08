@@ -6,9 +6,6 @@ module.exports = {
         return profil[0].actor.avatar.caption.substring(0, 7) !== "default" ? config['profilHasPersonnalAvatar'] : 0
     },
     numberReviews : function(review, profil, location, currentDate) {
-        return profil[0].actor.followerCount * config['numberFollowers']
-    },
-    numberFollowers : function(review, profil, location, currentDate) {
         return profil.length * config['numberReviews']
     },
     numberFollowers : function(review, profil, location, currentDate) {
@@ -17,6 +14,7 @@ module.exports = {
     profilIsVerified : function(review, profil, location, currentDate) {
         return profil[0].actor.isVerified * config['profilIsVerified']
     },
+
     monthReviewsFrequency : function(review, profil, location, currentDate) {
         let data = []
         profil.forEach((review) => {
