@@ -59,7 +59,7 @@ module.exports = {
             }else
                 sum = count = 0
         })
-        return (malus - 10) * config['malus_to_much_comment']
+        return (malus - 10) * config['reviewInMonth']
     },
     rateDistanceAverage : async function(review, profil, location, currentDate) {
         return 0

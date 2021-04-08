@@ -10,9 +10,6 @@
     "helpfulVotes" : 5,
     "rateDeviation" : -5,
     "copyPaste" : -5000,
-    "distanceAverage" : {
-    	"criteria" : [20,50,100,250,500,1000,1500,5000,10000],
-    	"response" : [30,25,20,15,5,0,-5,-20,-30]
-    } 
+    "reviewInMonth" : -10 
     
 }
