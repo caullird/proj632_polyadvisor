@@ -2,7 +2,9 @@
   "dependencies": {
     "minimist": "^1.2.5",
     "multilang-sentiment": "^1.2.0",
+    "nlp-js-tools-french": "^1.0.9",
     "node-fetch": "^2.6.1",
+    "stopwords-fr": "^0.3.0",
     "zlib": "^1.0.5"
   }
 }
