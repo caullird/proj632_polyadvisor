@@ -60,14 +60,12 @@ module.exports = {
 
     let profilsWithKey = []
     profils = profils.map((profil) => {
-      if(profil['data']['socialFeed']['sections'][0] && profil['data']['socialFeed']['sections'][0]['actor']['userId']) {
-        profilsWithKey[profil['data']['socialFeed']['sections'][0]['actor']['userId']] = profil['data']['socialFeed']['sections'][0]
-      }
+        profilsWithKey[profil['data']['socialFeed']['sections'][0]['actor']['userId']] = profil['data']['socialFeed']['sections']
     })
 
     for (profilId in profilsWithKey) {
-          let path = `results/${location['locationId']}/${currentDate}/profils/${profilId}}.json`
-          tools.writeFile(path, profilsWithKey[profilId])
+      let path = `results/${location['locationId']}/${currentDate}/profils/${profilId}}.json`
+      tools.writeFile(path, profilsWithKey[profilId])
     }
 
     return profilsWithKey

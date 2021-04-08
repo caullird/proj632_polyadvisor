@@ -6,6 +6,7 @@ const { exit } = require('process');
 const retrieveData = require('./src/retrieveData.js')
 const scoreProfil = require('./src/scoreProfil.js')
 const scoreReview = require('./src/scoreReview.js')
+const nlp = require('./src/nlp.js')
 
 const currentDate = new Date().getTime()
 
@@ -47,6 +48,7 @@ let locationID = retrieveData.parseUrl(args['_'][0]);
         for (const method in scoreReview) {
             scores[idReview] += parseInt(await scoreReview[method](review, profils[idProfil], location, currentDate))
         }
+        // nlp.scan(review, currentDate)
     }
     console.log(scores)
 
