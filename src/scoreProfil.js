@@ -1,5 +1,6 @@
 const config = require('../config.json');
 var fetch = require('node-fetch');
+var stringSimilarity = require("string-similarity");
 
 module.exports = {
     profilHasPersonnalAvatar : function(review, profil, location, currentDate) {
@@ -14,7 +15,25 @@ module.exports = {
     profilIsVerified : function(review, profil, location, currentDate) {
         return profil[0].actor.isVerified * config['profilIsVerified']
     },
+    copyPaste : function(review, profil, location, currentDate) {
+        let reviews = []
+        let hightestSimilarity = 0
 
+        profil.map((review) => {
+            reviews.push(review.items[0].feedSectionObject.text)
+        })
+
+        reviews.forEach((review, i) => {
+            reviews.forEach((reviewCompare, u) => {
+                let similarity = stringSimilarity.compareTwoStrings(review, reviewCompare);
+                if (hightestSimilarity < similarity && i !== u) {
+                    hightestSimilarity = similarity
+                }
+            })
+        })
+        
+        return hightestSimilarity
+    },
     monthReviewsFrequency : function(review, profil, location, currentDate) {
         let data = []
         profil.forEach((review) => {
@@ -33,46 +52,6 @@ module.exports = {
         }
         return 0
     },
-    rateDistanceAverage : async function(review, profil, location, currentDate) {
-        let prof_x = prof_y = location_x = location_y = null
-
-        if(profil[0].actor.hometown.location){
-            let url = 'https://api-adresse.data.gouv.fr/search/?q=' + profil[0].actor.hometown.location.name + '&limit=1'
-            let res = await fetch(url)
-            let json = await res.json()
-
-            let coordinates = json.features[0].geometry.coordinates
-            prof_x = coordinates[0]
-            prof_y = coordinates[1]
-        }
-
-        if(location.streetAddress.fullAddress){
-            let address = location.streetAddress.fullAddress.replace(',','').split(' ').join('+')
-
-            let url = 'https://api-adresse.data.gouv.fr/search/?q=' + address + '&limit=1'
-            let res = await fetch(url)
-            let json = await res.json()
-
-            let coordinates = json.features[0].geometry.coordinates
-            location_x = coordinates[0]
-            location_y = coordinates[1]
-        }
-
-        if(prof_x && prof_y){
-            let dist = Math.round(get_distance_m(prof_x,prof_y,location_x,location_y))
-            // console.log(dist)
-            var criteria = config['distanceAverage'].criteria
-            var values = config['distanceAverage'].response
-            for(let crit of criteria){
-                if(dist <= crit){
-                    return values[criteria.indexOf(crit)]
-                }
-            }
-            return values[values.length - 1]
-        }
-        return 0
-    },
-
     monthReviewsFrequency : function(review, profil, location, currentDate) {
         // @TODO
         return 0
