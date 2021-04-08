@@ -48,7 +48,7 @@ let locationID = retrieveData.parseUrl(args['_'][0]);
         for (const method in scoreReview) {
             scores[idReview] += parseInt(await scoreReview[method](review, profils[idProfil], location, currentDate))
         }
-        nlp.scan(review, currentDate)
+        // nlp.scan(review, currentDate)
     }
     console.log(scores)
 

@@ -3,23 +3,23 @@ var fetch = require('node-fetch');
 
 module.exports = {
     profilHasPersonnalAvatar : function(review, profil, location, currentDate) {
-        return profil.actor.avatar.caption.substring(0, 7) !== "default" ? config['profilHasPersonnalAvatar'] : 0
+        return profil[0].actor.avatar.caption.substring(0, 7) !== "default" ? config['profilHasPersonnalAvatar'] : 0
     },
     numberReviews : function(review, profil, location, currentDate) {
-        return profil.actor.followerCount * config['numberFollowers']
+        return profil[0].actor.followerCount * config['numberFollowers']
     },
     numberFollowers : function(review, profil, location, currentDate) {
-        return profil.items.length * config['numberReviews']
+        return profil[0].items.length * config['numberReviews']
     }, 
     profilIsVerified : function(review, profil, location, currentDate) {
-        return profil.actor.isVerified * config['profilIsVerified']
+        return profil[0].actor.isVerified * config['profilIsVerified']
     },
     rateDistanceAverage : async function(review, profil, location, currentDate) {
 
         let prof_x = prof_y = location_x = location_y = null
 
-        if(profil.actor.hometown.location){
-            let url = 'https://api-adresse.data.gouv.fr/search/?q=' + profil.actor.hometown.location.name + '&limit=1'
+        if(profil[0].actor.hometown.location){
+            let url = 'https://api-adresse.data.gouv.fr/search/?q=' + profil[0].actor.hometown.location.name + '&limit=1'
             let res = await fetch(url)
             let json = await res.json()
             
@@ -55,10 +55,11 @@ module.exports = {
         return 0
     },
     monthReviewsFrequency : function(review, profil, location, currentDate) {
+        // @TODO
         return 0
     },
     accountCreation : function(review, profil, location, currentDate) {
-        console.log(profil.items[0])
+        // @TODO
         return 0
     },
 }
