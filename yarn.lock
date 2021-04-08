@@ -7,6 +7,16 @@ fuse.js@^3.4.4:
   resolved "https://registry.yarnpkg.com/fuse.js/-/fuse.js-3.6.1.tgz#7de85fdd6e1b3377c23ce010892656385fd9b10c"
   integrity sha512-hT9yh/tiinkmirKrlv4KWOjztdoZo1mx9Qh4KvWqC7isoXwdUY3PNWUxceF4/qO9R6riA2C29jdTOeQOIROjgw==
 
+leaflet@^1.7.1:
+  version "1.7.1"
+  resolved "https://registry.yarnpkg.com/leaflet/-/leaflet-1.7.1.tgz#10d684916edfe1bf41d688a3b97127c0322a2a19"
+  integrity sha512-/xwPEBidtg69Q3HlqPdU3DnrXQOvQU/CCHA1tcDQVzOwm91YMYaILjNp7L4Eaw5Z4sOYdbBz6koWyibppd8Zqw==
+
+lodash@^4.17.4:
+  version "4.17.21"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.21.tgz#679591c564c3bffaae8454cf0b3df370c3d6911c"
+  integrity sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==
+
 minimist@^1.2.5:
   version "1.2.5"
   resolved "https://registry.yarnpkg.com/minimist/-/minimist-1.2.5.tgz#67d66014b66a6a8aaa0c083c5fd58df4e4e97602"
@@ -19,10 +29,22 @@ multilang-sentiment@^1.2.0:
   dependencies:
     fuse.js "^3.4.4"
 
+nlp-js-tools-french@^1.0.9:
+  version "1.0.9"
+  resolved "https://registry.yarnpkg.com/nlp-js-tools-french/-/nlp-js-tools-french-1.0.9.tgz#1400bef10435c4dba1bed8eb792f0108166688b9"
+  integrity sha1-FAC+8QQ1xNuhvtjreS8BCBZmiLk=
+  dependencies:
+    lodash "^4.17.4"
+
 node-fetch@^2.6.1:
   version "2.6.1"
   resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.6.1.tgz#045bd323631f76ed2e2b55573394416b639a0052"
   integrity sha512-V4aYg89jEoVRxRb2fJdAg8FHvI7cEyYdVAh94HH0UIK8oJxUfkjlDQN9RbMx+bEjP7+ggMiFRprSti032Oipxw==
+
+stopwords-fr@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/stopwords-fr/-/stopwords-fr-0.3.0.tgz#d2b14dd06f03dc05e3f1d32e236146f053ced1e5"
+  integrity sha512-QPLifH9dO1dvPitzunVJnnO6P5cj1nNvnAmj9Ci+mMQfyqwGhheKZO75buN6sgX/mYT8SwCuRz8chVLhGT9D4g==
 
 zlib@^1.0.5:
   version "1.0.5"
