@@ -46,6 +46,8 @@ let locationID = retrieveData.parseUrl(args['_'][0]);
     let profils = await retrieveData.getProfils(location, currentDate)
     let scores = {}
 
+    let path = process.cwd()
+
     for (let review of location['reviewList']['reviews']) {
 
         let idReview =  review['id']
@@ -78,15 +80,22 @@ let locationID = retrieveData.parseUrl(args['_'][0]);
         analyze['score'].push({"final_score" : scores[idReview] })
 
         // Write result file
-        let path = `results/${locationID}/${currentDate}/review_analyze/${idReview}}.json`
+        let path = `results/${locationID}/${currentDate}/review_analyze/${idReview}.json`
         tools.writeFile(path, analyze)
 
+        let profilHTML = await generateHTML.generateProfilHTML(profils[idProfil])
 
-        // Generate HTM
+        
+
+        fs.writeFileSync(`results/${locationID}/${currentDate}/profils/${idProfil}/index.html`, profilHTML)
     }
-    let localisationHTML = await generateHTML.generateLocationHTML(analyze['location'],scores, currentDate)
+    let localisationHTML = await generateHTML.generateLocationHTML(analyze['location'],scores, currentDate, path)
 
     fs.writeFileSync(`results/${locationID}/${currentDate}/data/index.html`, localisationHTML)
 
+
+
     opn(`results/${locationID}/${currentDate}/data/index.html`, {app: 'firefox'})
+
+
 })();
