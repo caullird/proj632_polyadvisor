@@ -48,7 +48,7 @@ module.exports = {
             diff.push((date2.getTime() - date1.getTime()) / (1000 * 3600 * 24))
         }
 
-        let sum = count = malus = 0
+        let sum = count = malus = 0 
         diff.forEach((date_diff) => {
             if(date_diff < 30){
                 sum += date_diff
@@ -60,7 +60,11 @@ module.exports = {
             }else
                 sum = count = 0
         })
-        return (malus - 10) * config['reviewInMonth']
+        if(malus != 0){
+            return (malus - config['limitMonthReview']) * config['reviewInMonth']
+        }else{
+            return 0
+        }
     },
     rateDistanceAverage : async function(review, profil, location, currentDate) {
         let data = []
