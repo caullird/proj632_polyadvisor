@@ -93,5 +93,6 @@ module.exports = {
     },
     rateStandardDeviationReview : function(review, profil, location, currentDate) {
         // TODO : determiner l'écart type
+        return 0
     }
 }
