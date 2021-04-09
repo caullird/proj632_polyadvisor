@@ -64,7 +64,7 @@ module.exports = {
     })
 
     for (profilId in profilsWithKey) {
-      let path = `results/${location['locationId']}/${currentDate}/profils/${profilId}}.json`
+      let path = `results/${location['locationId']}/${currentDate}/profils/${profilId}/profil.json`
       tools.writeFile(path, profilsWithKey[profilId])
     }
 
