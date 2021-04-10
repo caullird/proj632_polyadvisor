@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "ejs": "^3.1.6",
     "express": "^4.17.1",
     "geolib": "^3.3.1",
     "leaflet": "^1.7.1",

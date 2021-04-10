@@ -1,182 +1,34 @@
-
-<html>
-	<style>
-		h1 {
-			color: green;
-			text-align: center;
-		}
-		.redfamily {
-			color: red;	
-		}
-		.search-box,.close-icon,.search-wrapper {
-			position: relative;
-			padding: 10px;
-		}
-		.search-wrapper {
-			width: 500px;
-			margin: auto;
-			margin-top: 20px;
-		}
-		.search-box {
-			width: 80%;
-			border: 1px solid #ccc;
-		  outline: 0;
-		  border-radius: 15px;
-		}
-		.search-box:focus {
-			box-shadow: 0 0 15px 5px #b0e0ee;
-			border: 2px solid #bebede;
-		}
-		.close-icon {
-			border:1px solid transparent;
-			background-color: transparent;
-			display: inline-block;
-			vertical-align: middle;
-		  outline: 0;
-		  cursor: pointer;
-		}
-		.close-icon:after {
-			content: "X";
-			display: block;
-			width: 15px;
-			height: 15px;
-			position: absolute;
-			background-color: #FA9595;
-			z-index:1;
-			right: 35px;
-			top: 0;
-			bottom: 0;
-			margin: auto;
-			padding: 2px;
-			border-radius: 50%;
-			text-align: center;
-			color: white;
-			font-weight: normal;
-			font-size: 12px;
-			box-shadow: 0 0 2px #E50F0F;
-			cursor: pointer;
-		}
-		.search-box:not(:valid) ~ .close-icon {
-			display: none;
-		}
-
-		@import url('https://fonts.googleapis.com/css?family=Mukta:700');
-		* {
-		  box-sizing: border-box;
-		}
-		*::before, *::after {
-		  box-sizing: border-box;
-		}
-		body {
-		  font-family: 'Mukta', sans-serif;
-		  font-size: 1rem;
-		  line-height: 1.5;
-		  display: flex;
-		  align-items: center;
-		  justify-content: center;
-		  margin: 0;
-		  min-height: 100vh;
-		  background: #f3f8fa;
-		}
-		button {
-		  position: relative;
-		  display: inline-block;
-		  cursor: pointer;
-		  outline: none;
-		  border: 0;
-		  vertical-align: middle;
-		  text-decoration: none;
-		  background: transparent;
-		  padding: 0;
-		  font-size: inherit;
-		  font-family: inherit;
-		}
-		button.learn-more {
-		  width: 12rem;
-		  height: auto;
-		}
-		button.learn-more .circle {
-		  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
-		  position: relative;
-		  display: block;
-		  margin: 0;
-		  width: 3rem;
-		  height: 3rem;
-		  background: #282936;
-		  border-radius: 1.625rem;
-		}
-		button.learn-more .circle .icon {
-		  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
-		  position: absolute;
-		  top: 0;
-		  bottom: 0;
-		  margin: auto;
-		  background: #fff;
-		}
-		button.learn-more .circle .icon.arrow {
-		  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
-		  left: 0.625rem;
-		  width: 1.125rem;
-		  height: 0.125rem;
-		  background: none;
-		}
-		button.learn-more .circle .icon.arrow::before {
-		  position: absolute;
-		  content: '';
-		  top: -0.25rem;
-		  right: 0.0625rem;
-		  width: 0.625rem;
-		  height: 0.625rem;
-		  border-top: 0.125rem solid #fff;
-		  border-right: 0.125rem solid #fff;
-		  transform: rotate(45deg);
-		}
-		button.learn-more .button-text {
-		  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
-		  position: absolute;
-		  top: 0;
-		  left: 0;
-		  right: 0;
-		  bottom: 0;
-		  padding: 0.75rem 0;
-		  margin: 0 0 0 1.85rem;
-		  color: #282936;
-		  font-weight: 700;
-		  line-height: 1.6;
-		  text-align: center;
-		  text-transform: uppercase;
-		}
-		button:hover .circle {
-		  width: 100%;
-		}
-		button:hover .circle .icon.arrow {
-		  background: #fff;
-		  transform: translate(1rem, 0);
-		}
-		button:hover .button-text {
-		  color: #fff;
-		}
-
-   </style>
-
-   <body>
-   	<center>
-   		  <img width="200px;" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Tripadvisor_Logo_circle-green_vertical-lockup_registered_RGB.svg/1200px-Tripadvisor_Logo_circle-green_vertical-lockup_registered_RGB.svg.png">
-	      <form action="" method = "POST">
-	      	<div class="search-wrapper">
-				<input type="text" name="url_trip" name="focus" required class="search-box" placeholder="Lien tripadvisor ....">
-				<button class="close-icon" type="reset"></button>
-			</div>
-			<div id="container">
-			  <button class="learn-more">
-			    <span class="circle" aria-hidden="true">
-			      <span class="icon arrow"></span>
-			    </span>
-			    <span class="button-text">Analyser </span>
-			  </button>
-			</div>
-	      </form>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>TripAdvisor</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<center>
+	<img width="200px;" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Tripadvisor_Logo_circle-green_vertical-lockup_registered_RGB.svg/1200px-Tripadvisor_Logo_circle-green_vertical-lockup_registered_RGB.svg.png">
+	 <form action="" method = "POST">
+		 <div class="search-wrapper">
+		   <input type="text" name="url_trip" name="focus" required class="search-box" placeholder="Lien tripadvisor ....">
+		   <button class="close-icon" type="reset"></button>
+	   </div>
+	   <div id="container">
+		 <button class="learn-more">
+		   <span class="circle" aria-hidden="true">
+			 <span class="icon arrow"></span>
+		   </span>
+		   <span class="button-text">Analyser </span>
+		 </button>
+	   </div>
+	   <div id="history">
+			<a href="" class="location">a</a>
+			<a href="" class="location">a</a>
+			<a href="" class="location">a</a>
+	   </div>
+	 </form>
 	</center>
-      
-   </body>
+</body>
 </html>
