@@ -48,11 +48,11 @@ let path = `results/${locationID}/${currentDate}`;
         }
 
         // Generate html profil file and save it
-        let profilHTML = await generateHTML.generateProfilHTML(profils[idProfil])
+        let profilHTML = await generateHTML.generateProfilHTML(profils[idProfil], location)
         await tools.writeHtmlFile(path+`/profils/${idProfil}/index.html`, profilHTML)
 
         // Generate detail analyse file and save it
-        let detailsAnalyseHTML = await generateHTML.generateDetailsAnalyseHTML(review, profils[idProfil], scores[review['id']])
+        let detailsAnalyseHTML = await generateHTML.generateDetailsAnalyseHTML(review, profils[idProfil], scores[review['id']], location)
         await tools.writeHtmlFile(path+`/profils/${idProfil}/detailsAnalyse.html`, detailsAnalyseHTML)
 
     }

@@ -14,16 +14,16 @@ app.post('/', urlencodedParser, function (req, res) {
     let url_trip = req.body.url_trip
     let process = require('child_process').fork('main.js', [url_trip]);
 
-    process.on('message', function (m) {
-        res.writeHead(302, {'Location': m});
-        res.end();
-    });
-
     process.on('close', function (code) {
         if (code !== 0) {
             console.log('Child process exit with code: ' + code)
             res.sendFile( __dirname + "/" + "index.html" );
         }
+    });
+
+    process.on('message', function (m) {
+        res.writeHead(302, {'Location': m});
+        res.end();
     });
 })
 

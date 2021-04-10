@@ -7,7 +7,7 @@ module.exports = {
         location.reviewList.reviews.forEach((review) =>{
             html_str += "<div class='blog-card'>"
             html_str += "<div class='meta'>"
-            html_str += "<div class='photo' style='background-image: url(https://www.hotel-baud.com/assets/img/restaurant/terrasse-restaurant-bonne-74.jpg)'></div>"
+            html_str += `<a href=${review.absoluteUrl}><div class='photo' style='background-image: url(https://source.unsplash.com/1600x900/?${location.detail.__typename}&sig=${review.id})'></div></a>`
             html_str += "</div>"
             html_str += "<div class='description'>"
             html_str += "<h1>" + review.userProfile.displayName + "</h1>"
@@ -31,17 +31,16 @@ module.exports = {
         })
         return html_str
     },
-    generateProfilHTML : function(profil){
+    generateProfilHTML : function(profil, location){
 
         html_str = "<link href='https://caullireau.com/style_tripavisor.css' rel='stylesheet'>"
 
         html_str += "<center><header><font face='Helvetica'><h1 class='title_main'> Profil de " + profil[0].actor.displayName  + "</h1> </font></header></center>";
 
-
         profil.forEach((review) =>{
             html_str += "<div class='blog-card'>"
             html_str += "<div class='meta'>"
-            html_str += "<div class='photo' style='background-image: url(https://www.acs-ami.com/fr/blog/wp-content/uploads/2015/07/inspiration-voyage.jpg)'></div>"
+            html_str += `<a href=${review.absoluteUrl}><div class='photo' style='background-image: url(https://source.unsplash.com/1600x900/?${location.detail.__typename}&sig=${review.items[0].feedSectionObject.reviewId})'></div></a>`
             html_str += "</div>"
             html_str += "<div class='description'>"
             html_str += "<h1> Visite à " + review.items[0].feedSectionObject.location.name + "</h1>"
@@ -57,7 +56,7 @@ module.exports = {
 
         return html_str
     },
-    generateDetailsAnalyseHTML : function(review, profil, score){
+    generateDetailsAnalyseHTML : function(review, profil, score, location){
 
         html_str = "<link href='https://caullireau.com/style_tripavisor.css' rel='stylesheet'>"
 
@@ -65,7 +64,7 @@ module.exports = {
 
         html_str += "<div class='blog-card'>"
         html_str += "<div class='meta'>"
-        html_str += "<div class='photo' style='background-image: url(https://www.hotel-baud.com/assets/img/restaurant/terrasse-restaurant-bonne-74.jpg)'></div>"
+        html_str += `<a href=${review.absoluteUrl}><div class='photo' style='background-image: url(https://source.unsplash.com/1600x900/?${location.detail.__typename}&sig=${review.id})'></div></a>`
         html_str += "</div>"
         html_str += "<div class='description'>"
         html_str += "<h1>" + review.userProfile.displayName + "</h1>"
