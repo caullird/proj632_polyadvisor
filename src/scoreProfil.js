@@ -32,7 +32,10 @@ module.exports = {
             })
         })
         
-        return hightestSimilarity
+        if (hightestSimilarity - 0.5 > 0)
+            return (hightestSimilarity - 0.5) * config['copyPaste']
+
+        return 0
     },
     monthReviewsFrequency : function(review, profil, location, currentDate) {
         let data = []

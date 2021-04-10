@@ -9,7 +9,7 @@
     "accountCreation": 5,
     "helpfulVotes" : 5,
     "rateDeviation" : -5,
-    "copyPaste" : -5000,
+    "copyPaste" : -50,
     "reviewInMonth" : -10 
     
 }
