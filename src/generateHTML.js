@@ -2,7 +2,7 @@ module.exports = {
 	generateLocationHTML : function(location,scores,current_date,path) {
         html_str = "<link href='https://caullireau.com/style_tripavisor.css' rel='stylesheet'>"
         
-        html_str += "<center><header><font face='Helvetica'><h1 class='title_main'> Analyse de " + location.name  + "</h1> </font></header></center>";
+        html_str += "<center><header><h1 style='font-family: Poppins, sans-serif;' class='title_main'> Analyse de " + location.name  + "</h1></header></center>";
         
         location.reviewList.reviews.forEach((review) =>{
             html_str += "<div class='blog-card'>"
@@ -21,8 +21,8 @@ module.exports = {
             html_str += "<h2> Notre analyse : " + scores[review.id]['total']  + "</h2>"
 
             html_str += "<p class='read-more'>"
-            html_str += "<a href='/results/"+ location.locationId + "/"  + current_date + "/profils/" +  review.userId + "/detailsAnalyse.html'> Voir le détails de notre analyse </a>"
-            html_str += "<a href='/results/"+ location.locationId + "/"  + current_date + "/profils/" +  review.userId + "/'> Voir le profil </a>"
+            html_str += "<a style='background-color: #4CAF50;border: none;color: white;padding: 15px 32px;text-align: center;text-decoration: none;display: inline-block;font-size: 16px;margin: 4px 2px;cursor: pointer;' href='/results/"+ location.locationId + "/"  + current_date + "/profils/" +  review.userId + "/detailsAnalyse.html'> Voir le détails de notre analyse </a>"
+            html_str += "<a style='background-color: #4CAF50;border: none;color: white;padding: 15px 32px;text-align: center;text-decoration: none;display: inline-block;font-size: 16px;margin: 4px 2px;cursor: pointer;' href='/results/"+ location.locationId + "/"  + current_date + "/profils/" +  review.userId + "/'> Voir le profil </a>"
             html_str += "</p>"
 
 
@@ -35,7 +35,7 @@ module.exports = {
 
         html_str = "<link href='https://caullireau.com/style_tripavisor.css' rel='stylesheet'>"
 
-        html_str += "<center><header><font face='Helvetica'><h1 class='title_main'> Profil de " + profil[0].actor.displayName  + "</h1> </font></header></center>";
+        html_str += "<center><header><h1 class='title_main' style='font-family: Poppins, sans-serif;'> Profil de " + profil[0].actor.displayName  + "</h1></header></center>";
 
         profil.forEach((review) =>{
             html_str += "<div class='blog-card'>"
@@ -59,8 +59,9 @@ module.exports = {
     generateDetailsAnalyseHTML : function(review, profil, score, location){
 
         html_str = "<link href='https://caullireau.com/style_tripavisor.css' rel='stylesheet'>"
+        // html_str = "<link href='https://caullireau.com/style_tripavisor_table.css' rel='stylesheet'>"
 
-        html_str += "<center><header><font face='Helvetica'><h1 class='title_main'> Detail de l'analyse de " + profil[0].actor.displayName  + "</h1> </font></header></center>";
+        html_str += "<center><header><h1 class='title_main' style='font-family: Poppins, sans-serif;'> Detail de l'analyse de " + profil[0].actor.displayName  + "</h1></header></center>";
 
         html_str += "<div class='blog-card'>"
         html_str += "<div class='meta'>"
@@ -79,14 +80,36 @@ module.exports = {
 
         html_str += "</div>"
         html_str += "</div>"
+        html_str += "</div>"
 
+        html_str += "<center>"
+        html_str += "<table style='max-width: 1200px;border-collapse: collapse;margin: 25px 0;font-size: 0.9em;font-family: sans-serif;min-width: 1200px;box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);'>"
+        html_str += "<thead>"
+        html_str += "<tr style='background-color: #009879;color: #ffffff;text-align: left;'>"
+        html_str += "<th style='padding: 12px 15px;'> Fonction d'analyse </th>"
+        html_str += "<th style='padding: 12px 15px;'> Score </th>"
+        html_str += "</tr>"
+        html_str += "</thead>"
+
+        html_str += "<tbody>"
         score['profil'].forEach((scoreProfil) =>{
-            html_str += JSON.stringify(scoreProfil, null, 2)
+            html_str += "<tr style='border-bottom: 1px solid #dddddd;'>"
+            html_str += "<td style='padding: 12px 15px;'>" + scoreProfil.method + "</td>"
+            html_str += "<td style='padding: 12px 15px;'>" + scoreProfil.score + "</td>"
+            html_str += "</tr>"
         })
 
         score['review'].forEach((scoreReview) =>{
-            html_str += JSON.stringify(scoreReview, null, 2)
+            html_str += "<tr style='border-bottom: 1px solid #dddddd;'>"
+            html_str += "<td style='padding: 12px 15px;'>" + scoreReview.method + "</td>"
+            html_str += "<td style='padding: 12px 15px;'>" + scoreReview.score + "</td>"
+            html_str += "</tr>"
         })
+
+        html_str += "</tbody>"
+
+        html_str += "</table>"
+        html_str += "</center>"
 
         return html_str
     },
