@@ -1,7 +1,8 @@
 const config = require('../config.json');
-var fetch = require('node-fetch');
 var stringSimilarity = require("string-similarity");
 const geolib = require('geolib');
+const utf8 = require('utf8');
+const tools = require('./tools');
 
 module.exports = {
     profilHasPersonnalAvatar : function(review, profil, location, currentDate) {
@@ -100,6 +101,49 @@ module.exports = {
     },
     rateStandardDeviationReview : function(review, profil, location, currentDate) {
         // TODO : determiner l'écart type
+        return 0
+    },
+    distanceAndTimeBetweenEvaluation : async function(review, profil, location, currentDate) {
+        let result = []
+
+        for (let i = 0; i < profil.length - 1 ; i++) {
+            const review = profil[i];
+            const nextReview = profil[i+1];
+
+            let reviewData = {
+                createdDate: new Date(review.items[0].feedSectionObject.createdDate),
+                position: {
+                    latitude: review.items[0].feedSectionObject.location.latitude,
+                    longitude: review.items[0].feedSectionObject.location.longitude
+                }
+            }
+            let nextReviewData = {
+                createdDate: new Date(nextReview.items[0].feedSectionObject.createdDate),
+                position: {
+                    latitude: nextReview.items[0].feedSectionObject.location.latitude,
+                    longitude: nextReview.items[0].feedSectionObject.location.longitude
+                }
+            }
+
+            if (reviewData.position.latitude == null || reviewData.position.longitude == null) {
+                let locationName = utf8.encode(review.items[0].feedSectionObject.location.parent.additionalNames.long)
+                reviewData.position = await tools.getCoordinateOfLocation(locationName)
+            }
+
+            if (nextReviewData.position.latitude == null || nextReviewData.position.longitude == null) {
+                let locationName = utf8.encode(nextReview.items[0].feedSectionObject.location.parent.additionalNames.long)
+                nextReviewData.position = await tools.getCoordinateOfLocation(locationName)
+            }
+
+            let diffDate = parseInt((reviewData.createdDate  - nextReviewData.createdDate) / (1000 * 60 * 60 * 24)) 
+            let distance = geolib.getDistance(
+                reviewData.position,
+                nextReviewData.position
+            );
+
+            console.log(diffDate + " - " + distance)
+        }
+
         return 0
     }
 }

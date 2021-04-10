@@ -10,6 +10,7 @@
     "opn": "^6.0.0",
     "stopwords-fr": "^0.3.0",
     "string-similarity": "^4.0.4",
+    "utf8": "^3.0.0",
     "zlib": "^1.0.5"
   }
 }

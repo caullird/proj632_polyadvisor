@@ -10,11 +10,11 @@ const nlp = require('./src/nlp.js')
 // Unique cosntant for the generated files
 const currentDate = new Date().getTime()
 
-if (typeof args['_'][0] !== 'string' || !retrieveData.validUrl(args['_'][0]))
+if (typeof process.argv[2] !== 'string' || !retrieveData.validUrl(process.argv[2]))
     throw 'Command need an URL argument ! Example : node .\\main.js <URL>';
 
-let URL = args['_'][0];
-let locationID = retrieveData.parseUrl(args['_'][0]);
+let URL = process.argv[2];
+let locationID = retrieveData.parseUrl(process.argv[2]);
 let path = `results/${locationID}/${currentDate}`;
 
 (async () => {
