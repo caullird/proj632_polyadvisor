@@ -1,6 +1,7 @@
 const config = require('../config.json');
 var fetch = require('node-fetch');
 var stringSimilarity = require("string-similarity");
+const geolib = require('geolib');
 
 module.exports = {
     profilHasPersonnalAvatar : function(review, profil, location, currentDate) {
@@ -50,25 +51,55 @@ module.exports = {
             diff.push((date2.getTime() - date1.getTime()) / (1000 * 3600 * 24))
         }
 
-        let sum = count = malus = 0
+        let sum = count = malus = 0 
         diff.forEach((date_diff) => {
             if(date_diff < 30){
                 sum += date_diff
                 count += 1
                 if(sum > 30)
                     sum = count = 0
-                if((count >= 10) && (count > malus))
+                if((count >= config['limitMonthReview']) && (count > malus))
                     malus = count
             }else
                 sum = count = 0
         })
-        return (malus - 10) * config['reviewInMonth']
+        if(malus != 0){
+            return (malus - config['limitMonthReview']) * config['reviewInMonth']
+        }
+            
+        return 0
     },
     rateDistanceAverage : async function(review, profil, location, currentDate) {
+        let data = []
+        profil.forEach((review) => {
+
+            // TODO : comparaison des distances 
+            //console.log(geolib.getDistance([40.76, -73.984],[38.89, -77.032]))
+            
+            data.push(
+                [
+                    review.items[0].feedSectionObject.location.locationId, 
+                        [
+                            review.items[0].feedSectionObject.location.latitude,
+                            review.items[0].feedSectionObject.location.longitude
+                        ],
+                    review.items[0].feedSectionObject.publishedDate 
+                ]
+            )
+        })
         return 0
     },
-    accountCreation : function(review, profil, location, currentDate) {
-        // @TODO
-        return 0
+    rateHelfulAverage : function(review, profil, location, currentDate) {
+        let count = sum = 0
+        profil.forEach((review) => {
+            count++
+            sum += review.items[0].feedSectionObject.helpfulVotes
+        })
+
+        return ( sum / count )* config['helpfulVotesAverage']
     },
+    rateStandardDeviationReview : function(review, profil, location, currentDate) {
+        // TODO : determiner l'écart type
+        return 0
+    }
 }

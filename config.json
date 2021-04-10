@@ -10,6 +10,8 @@
     "helpfulVotes" : 5,
     "rateDeviation" : -5,
     "copyPaste" : -50,
-    "reviewInMonth" : -10 
+    "reviewInMonth" : -10,
+    "limitMonthReview" : 10,
+    "helpfulVotesAverage" : 4
     
 }
