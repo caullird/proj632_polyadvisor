@@ -32,7 +32,7 @@ module.exports = {
         })
 
         html_str += `<center><footer>`
-        html_str += `<a href="/" class="location" style='font-family: Poppins, sans-serif;'>Acceuil</a>`
+        html_str += `<a href="/" class="location" style='font-family: Poppins, sans-serif;'>Accueil</a>`
         html_str += `<a href="/history" class="location" style='font-family: Poppins, sans-serif;'>Historique</a>`
         html_str += `</footer></center>`
 
@@ -63,7 +63,7 @@ module.exports = {
         })
 
         html_str += `<center><footer>`
-        html_str += `<a href="/" class="location" style='font-family: Poppins, sans-serif;'>Acceuil</a>`
+        html_str += `<a href="/" class="location" style='font-family: Poppins, sans-serif;'>Accueil</a>`
         html_str += `<a href="/history" class="location" style='font-family: Poppins, sans-serif;'>Historique</a>`
         html_str += `</footer></center>`
 
@@ -124,7 +124,7 @@ module.exports = {
         html_str += "</table>"
 
         html_str += `<footer>`
-        html_str += `<a href="/" class="location" style='font-family: Poppins, sans-serif;'>Acceuil</a>`
+        html_str += `<a href="/" class="location" style='font-family: Poppins, sans-serif;'>Accueil</a>`
         html_str += `<a href="/history" class="location" style='font-family: Poppins, sans-serif;'>Historique</a>`
         html_str += `</footer>`
 
