@@ -23,11 +23,11 @@ yarn
 From  command line
 
 ```sh
-nodejs main.js <URL>
+node main.js <URL>
 ```
 or with web server
 ```sh
-nodejs app.js
+node app.js
 ```
 
 and then open your browser on http://localhost:3000
