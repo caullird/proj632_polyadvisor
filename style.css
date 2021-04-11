@@ -64,7 +64,7 @@ h1 {
 *::before, *::after {
   box-sizing: border-box;
 }
-body {
+.accueil-container {
   font-family: 'Mukta', sans-serif;
   font-size: 1rem;
   line-height: 1.5;
@@ -165,6 +165,10 @@ button:hover .button-text {
   align-content: center;
   align-items: center;
   flex-direction: column;
+}
+#history-container {
+  display: flex;
+  align-items: center;
 }
 
 #history p {

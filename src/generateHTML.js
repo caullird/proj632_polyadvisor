@@ -1,6 +1,7 @@
 module.exports = {
 	generateLocationHTML : function(location,scores,current_date,path) {
-        html_str = "<link href='https://caullireau.com/style_tripavisor.css' rel='stylesheet'>"
+        html_str = "<link rel='stylesheet' href='/style.css'>"
+        html_str += "<link href='https://caullireau.com/style_tripavisor.css' rel='stylesheet'>"
         
         html_str += "<center><header><h1 style='font-family: Poppins, sans-serif;' class='title_main'> Analyse de " + location.name  + "</h1></header></center>";
         
@@ -10,7 +11,7 @@ module.exports = {
             html_str += `<a href=${review.absoluteUrl}><div class='photo' style='background-image: url(https://source.unsplash.com/1600x900/?${location.detail.__typename}&sig=${review.id})'></div></a>`
             html_str += "</div>"
             html_str += "<div class='description'>"
-            html_str += "<h1>" + review.userProfile.displayName + "</h1>"
+            html_str += "<h1>" + review.userProfile.displayName + " a publiée le " + new Date(review.publishedDateTime).toLocaleString('fr-FR', { hour12: false }).split(' ')[0] + "</h1>"
             html_str += "<h2>" + review.title + "</h2>"
             let nb_stairs = review.rating 
             for(let i = 0; i < nb_stairs; i++){
@@ -29,11 +30,18 @@ module.exports = {
             html_str += "</div>"
             html_str += "</div>"
         })
+
+        html_str += `<center><footer>`
+        html_str += `<a href="/" class="location" style='font-family: Poppins, sans-serif;'>Acceuil</a>`
+        html_str += `<a href="/history" class="location" style='font-family: Poppins, sans-serif;'>Historique</a>`
+        html_str += `</footer></center>`
+
         return html_str
     },
     generateProfilHTML : function(profil, location){
 
-        html_str = "<link href='https://caullireau.com/style_tripavisor.css' rel='stylesheet'>"
+        html_str = "<link rel='stylesheet' href='/style.css'>"
+        html_str += "<link href='https://caullireau.com/style_tripavisor.css' rel='stylesheet'>"
 
         html_str += "<center><header><h1 class='title_main' style='font-family: Poppins, sans-serif;'> Profil de " + profil[0].actor.displayName  + "</h1></header></center>";
 
@@ -54,12 +62,17 @@ module.exports = {
             html_str += "</div>"
         })
 
+        html_str += `<center><footer>`
+        html_str += `<a href="/" class="location" style='font-family: Poppins, sans-serif;'>Acceuil</a>`
+        html_str += `<a href="/history" class="location" style='font-family: Poppins, sans-serif;'>Historique</a>`
+        html_str += `</footer></center>`
+
         return html_str
     },
     generateDetailsAnalyseHTML : function(review, profil, score, location){
 
-        html_str = "<link href='https://caullireau.com/style_tripavisor.css' rel='stylesheet'>"
-        // html_str = "<link href='https://caullireau.com/style_tripavisor_table.css' rel='stylesheet'>"
+        html_str = "<link rel='stylesheet' href='/style.css'>"
+        html_str += "<link href='https://caullireau.com/style_tripavisor.css' rel='stylesheet'>"
 
         html_str += "<center><header><h1 class='title_main' style='font-family: Poppins, sans-serif;'> Detail de l'analyse de " + profil[0].actor.displayName  + "</h1></header></center>";
 
@@ -109,6 +122,12 @@ module.exports = {
         html_str += "</tbody>"
 
         html_str += "</table>"
+
+        html_str += `<footer>`
+        html_str += `<a href="/" class="location" style='font-family: Poppins, sans-serif;'>Acceuil</a>`
+        html_str += `<a href="/history" class="location" style='font-family: Poppins, sans-serif;'>Historique</a>`
+        html_str += `</footer>`
+
         html_str += "</center>"
 
         return html_str

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,7 +7,7 @@
 	<title>TripAdvisor</title>
 	<link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="accueil-container">
 	<center>
 	<img width="200px;" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Tripadvisor_Logo_circle-green_vertical-lockup_registered_RGB.svg/1200px-Tripadvisor_Logo_circle-green_vertical-lockup_registered_RGB.svg.png">
 	<form action="" method = "POST">
@@ -25,11 +25,12 @@
 		</div>
 		<div class="separator"></div>
 		<div id="history">
-				<p>Dernière analyses : </p>
-			<div>
+			<p>Dernière analyses : </p>
+			<div id="history-container">
 				<% history.forEach(function(analyse){ %>
 					<a href="<%= analyse.path %>" class="location"><%= analyse.locationName %></a>
 				<% }) %>
+				<a href="history" class="location">Historique complet</a>
 			</div>
 		</div>
 	</form>

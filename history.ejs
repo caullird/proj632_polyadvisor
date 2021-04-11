@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>TripAdvisor</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <center>
+        <header>
+            <h1 class='title_main' style='font-family: Poppins, sans-serif;'>Historique d'analyse</h1>
+        </header>
+        <table style='max-width: 1200px;border-collapse: collapse;margin: 25px 0;font-size: 0.9em;font-family: sans-serif;min-width: 1200px;box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);'>
+            <thead>
+                <tr style='background-color: #009879;color: #ffffff;text-align: left;'>
+                    <th style='padding: 12px 15px;'>Date analyse</th>
+                    <th style='padding: 12px 15px;'>Lieux</th>
+                    <th style='padding: 12px 15px;'>nb avis</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% history.forEach(function(analyse){ %>
+                    <tr onclick="window.location='<%= analyse.path %>'" style='border-bottom: 1px solid #dddddd; cursor: pointer;'>
+                            <td style='padding: 12px 15px;'><%= analyse.dateFormated %></td>
+                            <td style='padding: 12px 15px;'><%= analyse.locationName %></td>
+                            <td style='padding: 12px 15px;'><%= analyse.nb %> avis</td>
+                        </a>
+                    </tr>
+				<% }) %>
+            </tbody>
+        </table>
+        <footer>
+            <a href="." class="location" style='font-family: Poppins, sans-serif;'>Acceuil</a>
+        </footer>
+    </center>    
+</body>
+</html>

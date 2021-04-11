@@ -19,17 +19,43 @@ app.get('/', function (req, res) {
         let data = fs.readFileSync(`${__dirname}/results/${locationFile}/${datedFiles[0]}/data/location.json`, 'utf8');
         let json = JSON.parse(data);
         let name = json.data.locations[0].name + ", " + json.data.locations[0].geoName
-        
+
         history.push({
             "locationName": name,
-            "path": `./results/${locationFile}/${datedFiles[0]}/data/`
+            "path": `./results/${locationFile}/${datedFiles[datedFiles.length - 1]}/data/`,
         });
     });
+
+    
 
     res.render(__dirname + "/" + "index", { history: history });
 })
 app.get('/style.css', function (req, res) {
     res.sendFile( __dirname + "/" + "style.css" );
+})
+app.get('/history/', function (req, res) {
+    let history = []
+    let locationFiles = fs.readdirSync(__dirname + "/results");
+    locationFiles.forEach(locationFile => {
+        let datedFiles = fs.readdirSync(__dirname + "/results/" + locationFile);
+        let data = fs.readFileSync(`${__dirname}/results/${locationFile}/${datedFiles[0]}/data/location.json`, 'utf8');
+        let json = JSON.parse(data);
+        let name = json.data.locations[0].name + ", " + json.data.locations[0].geoName
+        
+        datedFiles.forEach(datedFile => {
+            history.push({
+                "locationName": name,
+                "date": datedFile,
+                "dateFormated": new Date(+datedFile).toLocaleString('fr-FR', { hour12: false }),
+                "path": `./results/${locationFile}/${datedFiles[0]}/data/`,
+                "nb": json.data.locations[0].reviewList.reviews.length,
+            });
+        });
+    });
+
+
+    console.log(history)
+    res.render(__dirname + "/" + "history", { history: history });
 })
 
 app.post('/', urlencodedParser, function (req, res) {
