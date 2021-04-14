@@ -105,6 +105,7 @@ module.exports = {
     },
     distanceAndTimeBetweenEvaluation : async function(review, profil, location, currentDate) {
         let result = []
+        let score = 0
 
         for (let i = 0; i < profil.length - 1 ; i++) {
             const review = profil[i];
@@ -141,9 +142,13 @@ module.exports = {
                 nextReviewData.position
             );
 
-            console.log(diffDate + " - " + distance)
+            if(parseInt(distance/++diffDate) > config["distanceAndTimeBetweenEvaluation"]){
+                return score -= parseInt(distance/diffDate)-config["distanceAndTimeBetweenEvaluation"]*20
+            }
+
+            return 0
         }
 
-        return 0
+        return score
     }
 }

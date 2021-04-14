@@ -12,6 +12,6 @@
     "copyPaste" : -50,
     "reviewInMonth" : -10,
     "limitMonthReview" : 10,
-    "helpfulVotesAverage" : 4
-    
+    "helpfulVotesAverage" : 4,
+    "distanceAndTimeBetweenEvaluation" : 1000000
 }

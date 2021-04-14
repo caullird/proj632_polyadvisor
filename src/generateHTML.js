@@ -19,7 +19,28 @@ module.exports = {
             }
             html_str += "<p>" + review.text + "</p>"
 
-            html_str += "<h2> Notre analyse : " + scores[review.id]['total']  + "</h2>"
+            let avis = ""
+            switch(true) {
+                case (scores[review.id]['total'] < 0):
+                    avis = "médiocre"
+                    break;
+                case (scores[review.id]['total'] < 20):
+                    avis = "faible"
+                    break;
+                case (scores[review.id]['total'] < 40):
+                    avis = "moyen"
+                    break;
+                case (scores[review.id]['total'] < 60):
+                    avis = "bon"
+                    break;
+                case (scores[review.id]['total'] < 80):
+                    avis = "très bon"
+                    break;
+                default:
+                    avis = "excellent"
+            }
+
+            html_str += "<h3> Score de confiance : " + scores[review.id]['total']  + " (" + avis + ")</h2>"
 
             html_str += "<p class='read-more'>"
             html_str += "<a style='background-color: #4CAF50;border: none;color: white;padding: 15px 32px;text-align: center;text-decoration: none;display: inline-block;font-size: 16px;margin: 4px 2px;cursor: pointer;' href='/results/"+ location.locationId + "/"  + current_date + "/profils/" +  review.userId + "/detailsAnalyse.html'> Voir le détails de notre analyse </a>"
@@ -89,7 +110,28 @@ module.exports = {
         }
         html_str += "<p>" + review.text + "</p>"
 
-        html_str += "<h2> Notre analyse : " + score['total']  + "</h2>"
+        let avis = ""
+        switch(true) {
+            case (score['total'] < 0):
+                avis = "médiocre"
+                break;
+            case (score['total'] < 20):
+                avis = "faible"
+                break;
+            case (score['total'] < 40):
+                avis = "moyen"
+                break;
+            case (score['total'] < 60):
+                avis = "bon"
+                break;
+            case (score['total'] < 80):
+                avis = "très bon"
+                break;
+            default:
+                avis = "excellent"
+        }
+
+        html_str += "<h3> Score de confiance : " + score['total']  + " (" + avis + ")</h2>"
 
         html_str += "</div>"
         html_str += "</div>"
