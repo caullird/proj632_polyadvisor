@@ -1,83 +1,154 @@
 const config = require('../config.json');
-var fetch = require('node-fetch');
+var stringSimilarity = require("string-similarity");
+const geolib = require('geolib');
+const utf8 = require('utf8');
+const tools = require('./tools');
 
 module.exports = {
     profilHasPersonnalAvatar : function(review, profil, location, currentDate) {
         return profil[0].actor.avatar.caption.substring(0, 7) !== "default" ? config['profilHasPersonnalAvatar'] : 0
     },
     numberReviews : function(review, profil, location, currentDate) {
-        return profil[0].actor.followerCount * config['numberFollowers']
+        return profil.length * config['numberReviews']
     },
     numberFollowers : function(review, profil, location, currentDate) {
-        return profil[0].items.length * config['numberReviews']
-    }, 
+        return profil[0].actor.followerCount * config['numberFollowers']
+    },
     profilIsVerified : function(review, profil, location, currentDate) {
         return profil[0].actor.isVerified * config['profilIsVerified']
     },
-    rateDistanceAverage : async function(review, profil, location, currentDate) {
+    copyPaste : function(review, profil, location, currentDate) {
+        let reviews = []
+        let hightestSimilarity = 0
 
-        let prof_x = prof_y = location_x = location_y = null
+        profil.map((review) => {
+            reviews.push(review.items[0].feedSectionObject.text)
+        })
 
-        if(profil[0].actor.hometown.location){
-            let url = 'https://api-adresse.data.gouv.fr/search/?q=' + profil[0].actor.hometown.location.name + '&limit=1'
-            let res = await fetch(url)
-            let json = await res.json()
-            
-            let coordinates = json.features[0].geometry.coordinates
-            prof_x = coordinates[0]
-            prof_y = coordinates[1]
-        }
+        reviews.forEach((review, i) => {
+            reviews.forEach((reviewCompare, u) => {
+                let similarity = stringSimilarity.compareTwoStrings(review, reviewCompare);
+                if (hightestSimilarity < similarity && i !== u) {
+                    hightestSimilarity = similarity
+                }
+            })
+        })
+        
+        if (hightestSimilarity - 0.5 > 0)
+            return (hightestSimilarity - 0.5) * config['copyPaste']
 
-        if(location.streetAddress.fullAddress){
-            let address = location.streetAddress.fullAddress.replace(',','').split(' ').join('+')
-
-            let url = 'https://api-adresse.data.gouv.fr/search/?q=' + address + '&limit=1'
-            let res = await fetch(url)
-            let json = await res.json()
-            
-            let coordinates = json.features[0].geometry.coordinates
-            location_x = coordinates[0]
-            location_y = coordinates[1]
-        }
-
-        if(prof_x && prof_y){
-            let dist = Math.round(get_distance_m(prof_x,prof_y,location_x,location_y))
-            // console.log(dist)
-            var criteria = config['distanceAverage'].criteria
-            var values = config['distanceAverage'].response
-            for(let crit of criteria){
-                if(dist <= crit){
-                    return values[criteria.indexOf(crit)]
-                }                
-            }
-            return values[values.length - 1]
-        }
         return 0
     },
     monthReviewsFrequency : function(review, profil, location, currentDate) {
-        // @TODO
+        let data = []
+        profil.forEach((review) => {
+            data.push(review.items[0].feedSectionObject.publishedDate)
+        })
+
+        let diff = []
+        for(let i = 0; i < data.length - 1; i++){
+            var date1 = new Date(data[i + 1])
+            var date2 = new Date(data[i])
+            diff.push((date2.getTime() - date1.getTime()) / (1000 * 3600 * 24))
+        }
+
+        let sum = count = malus = 0 
+        diff.forEach((date_diff) => {
+            if(date_diff < 30){
+                sum += date_diff
+                count += 1
+                if(sum > 30)
+                    sum = count = 0
+                if((count >= config['limitMonthReview']) && (count > malus))
+                    malus = count
+            }else
+                sum = count = 0
+        })
+        if(malus != 0){
+            return (malus - config['limitMonthReview']) * config['reviewInMonth']
+        }
+            
         return 0
     },
-    accountCreation : function(review, profil, location, currentDate) {
-        // @TODO
+    rateDistanceAverage : async function(review, profil, location, currentDate) {
+        let data = []
+        profil.forEach((review) => {
+
+            // TODO : comparaison des distances 
+            //console.log(geolib.getDistance([40.76, -73.984],[38.89, -77.032]))
+            
+            data.push(
+                [
+                    review.items[0].feedSectionObject.location.locationId, 
+                        [
+                            review.items[0].feedSectionObject.location.latitude,
+                            review.items[0].feedSectionObject.location.longitude
+                        ],
+                    review.items[0].feedSectionObject.publishedDate 
+                ]
+            )
+        })
         return 0
     },
-}
+    rateHelfulAverage : function(review, profil, location, currentDate) {
+        let count = sum = 0
+        profil.forEach((review) => {
+            count++
+            sum += review.items[0].feedSectionObject.helpfulVotes
+        })
 
-function deg2rad(x){
-    return Math.PI*x/180;
-}
+        return ( sum / count )* config['helpfulVotesAverage']
+    },
+    rateStandardDeviationReview : function(review, profil, location, currentDate) {
+        // TODO : determiner l'écart type
+        return 0
+    },
+    distanceAndTimeBetweenEvaluation : async function(review, profil, location, currentDate) {
+        let result = []
+        let score = 0
 
-function get_distance_m($lat1, $lng1, $lat2, $lng2) {
-    $earth_radius = 6378137;
-    $rlo1 = deg2rad($lng1);    
-    $rla1 = deg2rad($lat1);
-    $rlo2 = deg2rad($lng2);
-    $rla2 = deg2rad($lat2);
-    $dlo = ($rlo2 - $rlo1) / 2;
-    $dla = ($rla2 - $rla1) / 2;
-    $a = (Math.sin($dla) * Math.sin($dla)) + Math.cos($rla1) * Math.cos($rla2) * (Math.sin($dlo) * Math.sin($dlo
-));
-    $d = 2 * Math.atan2(Math.sqrt($a), Math.sqrt(1 - $a));
-    return ($earth_radius * $d) / 1000;
+        for (let i = 0; i < profil.length - 1 ; i++) {
+            const review = profil[i];
+            const nextReview = profil[i+1];
+
+            let reviewData = {
+                createdDate: new Date(review.items[0].feedSectionObject.createdDate),
+                position: {
+                    latitude: review.items[0].feedSectionObject.location.latitude,
+                    longitude: review.items[0].feedSectionObject.location.longitude
+                }
+            }
+            let nextReviewData = {
+                createdDate: new Date(nextReview.items[0].feedSectionObject.createdDate),
+                position: {
+                    latitude: nextReview.items[0].feedSectionObject.location.latitude,
+                    longitude: nextReview.items[0].feedSectionObject.location.longitude
+                }
+            }
+
+            if (reviewData.position.latitude == null || reviewData.position.longitude == null) {
+                let locationName = utf8.encode(review.items[0].feedSectionObject.location.parent.additionalNames.long)
+                reviewData.position = await tools.getCoordinateOfLocation(locationName)
+            }
+
+            if (nextReviewData.position.latitude == null || nextReviewData.position.longitude == null) {
+                let locationName = utf8.encode(nextReview.items[0].feedSectionObject.location.parent.additionalNames.long)
+                nextReviewData.position = await tools.getCoordinateOfLocation(locationName)
+            }
+
+            let diffDate = parseInt((reviewData.createdDate  - nextReviewData.createdDate) / (1000 * 60 * 60 * 24)) 
+            let distance = geolib.getDistance(
+                reviewData.position,
+                nextReviewData.position
+            );
+
+            if(parseInt(distance/++diffDate) > config["distanceAndTimeBetweenEvaluation"]){
+                return score -= parseInt(distance/diffDate)-config["distanceAndTimeBetweenEvaluation"]*20
+            }
+
+            return 0
+        }
+
+        return score
+    }
 }

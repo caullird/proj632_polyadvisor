@@ -9,9 +9,9 @@
     "accountCreation": 5,
     "helpfulVotes" : 5,
     "rateDeviation" : -5,
-    "distanceAverage" : {
-    	"criteria" : [20,50,100,250,500,1000,1500,5000,10000],
-    	"response" : [30,25,20,15,5,0,-5,-20,-30]
-    } 
-    
+    "copyPaste" : -50,
+    "reviewInMonth" : -10,
+    "limitMonthReview" : 10,
+    "helpfulVotesAverage" : 4,
+    "distanceAndTimeBetweenEvaluation" : 1000000
 }

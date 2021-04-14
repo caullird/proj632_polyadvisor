@@ -46,7 +46,7 @@ module.exports = {
     let res = await fetch(url, {headers: headers, method: "POST", body: bodyReviews})
     let json = await res.json()
     let path =  `results/${locationId}/${currentDate}/data/location.json`
-    tools.writeFile(path, json)
+    tools.writeDataFile(path, json)
 
     return json['data']['locations'][0]
   },
@@ -64,8 +64,8 @@ module.exports = {
     })
 
     for (profilId in profilsWithKey) {
-      let path = `results/${location['locationId']}/${currentDate}/profils/${profilId}}.json`
-      tools.writeFile(path, profilsWithKey[profilId])
+      let path = `results/${location['locationId']}/${currentDate}/profils/${profilId}/profil.json`
+      tools.writeDataFile(path, profilsWithKey[profilId])
     }
 
     return profilsWithKey
