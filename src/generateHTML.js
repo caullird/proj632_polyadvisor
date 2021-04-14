@@ -69,7 +69,7 @@ module.exports = {
         profil.forEach((review) =>{
             html_str += "<div class='blog-card'>"
             html_str += "<div class='meta'>"
-            html_str += `<a href=${review.absoluteUrl}><div class='photo' style='background-image: url(https://source.unsplash.com/1600x900/?${location.detail.__typename}&sig=${review.items[0].feedSectionObject.reviewId})'></div></a>`
+            html_str += `<div class='photo' style='background-image: url(https://source.unsplash.com/1600x900/?${location.detail.__typename}&sig=${review.items[0].feedSectionObject.reviewId})'></div>`
             html_str += "</div>"
             html_str += "<div class='description'>"
             html_str += "<h1> Visite à " + review.items[0].feedSectionObject.location.name + "</h1>"
