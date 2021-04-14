@@ -86,6 +86,11 @@ app.get('/css/*', function (req, res) {
     res.sendFile( __dirname + "/" + req.url );
 });
 
+app.get('/image/*', function (req, res) {
+    console.log(__dirname + "/" + req.url);
+    res.sendFile( __dirname + "/" + req.url );
+});
+
 var server = app.listen(3000, function () {
     console.log("Serveur running in http://localhost:3000")
 })
