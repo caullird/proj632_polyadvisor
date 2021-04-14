@@ -28,7 +28,7 @@ app.get('/', function (req, res) {
 
     
 
-    res.render(__dirname + "/" + "index", { history: history });
+    res.render(__dirname + "/template/" + "index", { history: history });
 })
 app.get('/style.css', function (req, res) {
     res.sendFile( __dirname + "/" + "style.css" );
@@ -55,7 +55,7 @@ app.get('/history/', function (req, res) {
 
 
     console.log(history)
-    res.render(__dirname + "/" + "history", { history: history });
+    res.render(__dirname + "/template/" + "history", { history: history });
 })
 
 app.post('/', urlencodedParser, function (req, res) {
@@ -77,6 +77,11 @@ app.post('/', urlencodedParser, function (req, res) {
 })
 
 app.get('/results/*', function (req, res) {
+    console.log(__dirname + "/" + req.url);
+    res.sendFile( __dirname + "/" + req.url );
+});
+
+app.get('/css/*', function (req, res) {
     console.log(__dirname + "/" + req.url);
     res.sendFile( __dirname + "/" + req.url );
 });

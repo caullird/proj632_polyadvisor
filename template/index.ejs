@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>TripAdvisor</title>
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body class="accueil-container">
+	<center>
+	<img width="200px;" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Tripadvisor_Logo_circle-green_vertical-lockup_registered_RGB.svg/1200px-Tripadvisor_Logo_circle-green_vertical-lockup_registered_RGB.svg.png">
+	<form action="" method = "POST">
+		<div class="search-wrapper">
+			<input type="text" name="url_trip" name="focus" required class="search-box" placeholder="Lien tripadvisor ....">
+			<button class="close-icon" type="reset"></button>
+		</div>
+		<div id="container">
+			<button class="learn-more">
+			<span class="circle" aria-hidden="true">
+				<span class="icon arrow"></span>
+			</span>
+			<span class="button-text">Analyser </span>
+			</button>
+		</div>
+		<div class="separator"></div>
+		<div id="history">
+			<p>Dernière analyses : </p>
+			<div id="history-container">
+				<% history.forEach(function(analyse){ %>
+					<a href="<%= analyse.path %>" class="location"><%= analyse.locationName %></a>
+				<% }) %>
+				<a href="history" class="location">Historique complet</a>
+			</div>
+		</div>
+	</form>
+	</center>
+</body>
+</html>
