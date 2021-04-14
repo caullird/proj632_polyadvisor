@@ -1,6 +1,6 @@
 module.exports = {
 	generateLocationHTML : function(location,scores,current_date,path) {
-        html_str = "<link rel='stylesheet' href='/style.css'>"
+        html_str = "<link rel='stylesheet' href='/css/style.css'>"
         html_str += "<link href='https://caullireau.com/style_tripavisor.css' rel='stylesheet'>"
         
         html_str += "<center><header><h1 style='font-family: Poppins, sans-serif;' class='title_main'> Analyse de " + location.name  + "</h1></header></center>";
@@ -61,7 +61,7 @@ module.exports = {
     },
     generateProfilHTML : function(profil, location){
 
-        html_str = "<link rel='stylesheet' href='/style.css'>"
+        html_str = "<link rel='stylesheet' href='/css/style.css'>"
         html_str += "<link href='https://caullireau.com/style_tripavisor.css' rel='stylesheet'>"
 
         html_str += "<center><header><h1 class='title_main' style='font-family: Poppins, sans-serif;'> Profil de " + profil[0].actor.displayName  + "</h1></header></center>";
@@ -92,7 +92,7 @@ module.exports = {
     },
     generateDetailsAnalyseHTML : function(review, profil, score, location){
 
-        html_str = "<link rel='stylesheet' href='/style.css'>"
+        html_str = "<link rel='stylesheet' href='/css/style.css'>"
         html_str += "<link href='https://caullireau.com/style_tripavisor.css' rel='stylesheet'>"
 
         html_str += "<center><header><h1 class='title_main' style='font-family: Poppins, sans-serif;'> Detail de l'analyse de " + profil[0].actor.displayName  + "</h1></header></center>";
