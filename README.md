@@ -27,16 +27,6 @@
     <img src="https://github.com/caullird/proj632-tripadvisor/blob/doccs/history.png?raw=true" width="800">
 </p>
 
-## ⚙️ How Shapash works 
-**Shapash** is an overlay package for libraries dedicated to the interpretability of models. It uses Shap or Lime backend
-to compute contributions.
-**Shapash** builds on the different steps necessary to build a machine learning model to make the results understandable
-
-<p align="center">
-  <img src="https://raw.githubusercontent.com/MAIF/shapash/master/docs/_static/shapash-diagram.png" width="700" title="diagram">
-</p>
-
-
 ## 🛠 Installation
 
 Polyadvisor is intended to work with Nodejs, to install the project you need to clone the repository :
