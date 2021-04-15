@@ -11,20 +11,27 @@
 - Display clear and understandable results 
 
 <p align="center">
-  <img src="https://github.com/caullird/proj632-tripadvisor/blob/doccs/clear_display.png?raw=true" width="800"/>
+  <img src="https://github.com/caullird/proj632-tripadvisor/blob/docs/screenshots/clear_display.png?raw=true" width="800"/>
 </p>
 
 
 - Allow User to quickly analyse locations by using a **website**.
 
 <p align="center">
-    <img src="https://github.com/caullird/proj632-tripadvisor/blob/doccs/home.png?raw=true" width="800">
+    <img src="https://github.com/caullird/proj632-tripadvisor/blob/docs/screenshots/home.png?raw=true" width="800">
 </p>
 
 - Retrieve old analyses using the history page.
 
 <p align="center">
-    <img src="https://github.com/caullird/proj632-tripadvisor/blob/doccs/history.png?raw=true" width="800">
+    <img src="https://github.com/caullird/proj632-tripadvisor/blob/docs/screenshots/history.png?raw=true" width="800">
+</p>
+
+## ⚙️ How Shapash works 
+**Polyadvisor** works in 3 steps
+
+<p align="center">
+  <img src="https://github.com/caullird/proj632-tripadvisor/blob/docs/screenshots/how_works.png?raw=true" width="700" title="diagram">
 </p>
 
 ## 🛠 Installation
