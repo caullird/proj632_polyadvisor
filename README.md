@@ -27,7 +27,7 @@
     <img src="https://github.com/caullird/proj632-tripadvisor/blob/docs/screenshots/history.png?raw=true" width="800">
 </p>
 
-## ⚙️ How Shapash works 
+## ⚙️ How Polyadvisor works 
 **Polyadvisor** works in 3 steps
 
 <p align="center">
