@@ -4,7 +4,7 @@
     "express": "^4.17.1",
     "geolib": "^3.3.1",
     "leaflet": "^1.7.1",
-    "minimist": "^1.2.5",
+    "minimist": "^1.2.6",
     "multilang-sentiment": "^1.2.0",
     "nlp-js-tools-french": "^1.0.9",
     "node-fetch": "^2.6.1",
